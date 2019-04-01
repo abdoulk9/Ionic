@@ -14,6 +14,6 @@ export class HomePage {
 
 
   constructor(private todoService: TodoService){
-    this.todoList=  todoService.getData();
+    this.todoList = todoService.getData();
   }
 }
