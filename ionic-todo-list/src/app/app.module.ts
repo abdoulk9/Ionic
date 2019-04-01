@@ -15,7 +15,7 @@ import { IonicStorageModule} from '@ionic/storage';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  //ajout de IonicStorageModule.forRoot() pour l'utilisation de storage
+  //Ajout de IonicStorageModule.forRoot() pour l'utilisation de storage
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot()],
   providers: [
     StatusBar,
