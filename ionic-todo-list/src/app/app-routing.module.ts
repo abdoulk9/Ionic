@@ -4,7 +4,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
-  { path: 'formulaire', loadChildren: './formulaire/formulaire.module#FormulairePageModule' },
+  //Ajout du parametre de  pos pour la modification du formulaire à travers a position
+  { path: 'formulaire/:pos', loadChildren: './formulaire/formulaire.module#FormulairePageModule' },
 ];
 
 @NgModule({

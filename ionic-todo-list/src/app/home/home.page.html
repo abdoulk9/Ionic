@@ -10,7 +10,7 @@
   <ion-list>
     <!-- //Creation de button de glissement  -->
     <!-- Ajout d'une variable pour recuperer l'index -->
-    <ion-item-sliding *ngFor="let todo of todoList"  let pos = index>
+    <ion-item-sliding *ngFor="let todo of todoList" let pos=index>
 
       <ion-item>
         <!-- //relation bi-directionnel, si la case est coché la valeur est moidifiée dans le model -->
@@ -19,19 +19,35 @@
       </ion-item>
 
       <ion-item-options side="end">
-         <!-- //Couleur du boutton poubelle -->
-         <!-- ajout de click sur la focntion deleteTask pour la suppression -->
+        <!-- //Couleur du boutton poubelle -->
+        <!-- ajout de click sur la focntion deleteTask pour la suppression -->
         <ion-button color="danger" (click)="deleteTask(pos)">
           <!-- //l'image de poubelle -->
           <ion-icon name="trash"></ion-icon>
         </ion-button>
+
+        <ion-button (click)="showUpdateForm(pos)">
+          <ion-icon name="create"  ></ion-icon>
+        </ion-button>
+
+       
 
       </ion-item-options>
 
     </ion-item-sliding>
   </ion-list>
 
-
+  <!-- <ion-list>
+    <ion-item>
+      <ion-range min="20" max="80" step="2">
+        <ion-icon small range-left name="sunny">
+        </ion-icon>
+        <ion-icon range-right name="sunny">
+        </ion-icon>
+      </ion-range>
+    </ion-item>
+    <ion-list> -->
+      
 
 </ion-content>
 

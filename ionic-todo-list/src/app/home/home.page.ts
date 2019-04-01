@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from '../services/todo.service';
 import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,9 +16,11 @@ export class HomePage implements OnInit {
   //Variable pour stocker le ccontenu de provider dans le controleur pour pouvoir l'afficher
   private todoList;
 
-
-  constructor(private todoService: TodoService,
-    private storage: Storage) {
+ //Ajout d'une variable router de type Router dans le constructeur 
+  constructor(
+    private todoService: TodoService,
+    private storage: Storage,
+    private router:Router) {
 
   }
 
@@ -33,5 +36,11 @@ export class HomePage implements OnInit {
     this.todoList.splice(pos, 1);
     //suvegarde
  this.storage.set('todo-list', this.todoList);
+  }
+ 
+  //Modification du formulaire
+  showUpdateForm(pos){
+   //Utilisation de l'objet router crée plus haut
+   this.router.navigateByUrl('/formulaire/' + pos);
   }
 }
