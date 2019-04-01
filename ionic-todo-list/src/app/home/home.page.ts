@@ -8,7 +8,12 @@ import { TodoService } from '../services/todo.service';
 })
 export class HomePage {
 
+
+  //Variable pour stocker le ccontenu de provider dans le controleur pour pouvoir l'afficher
+  private todoList;
+
+
   constructor(private todoService: TodoService){
-    console.log(todoService.getData());
+    this.todoList=  todoService.getData();
   }
 }

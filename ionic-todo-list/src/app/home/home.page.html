@@ -6,9 +6,22 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let todo of todoList">
+      <!-- //relation bi-directionnel, si la case est coché la vaeur est moidifiée dans le model -->
+      <ion-checkbox [(ngModel)]="todo.done"></ion-checkbox>
+      <ion-label>{{todo.taskName}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  
+
 </ion-content>
+
+<ion-footer paddind>
+  <ion-item>
+    <ion-button expand="full" href="/formulaire">Nouvelle tâche</ion-button>
+  </ion-item>
+  
+</ion-footer>
