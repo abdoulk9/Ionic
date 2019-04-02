@@ -13,8 +13,8 @@ import { Storage } from '@ionic/storage';
 export class FormulairePage implements OnInit {
 
 
-  private task;
-  private pos;
+  public task;
+  public pos;
   //ajout de la variable routeur de type Router pour la navigation
   //injection de la Variable activateRoute pour recuperer la position de l'element modifer
   constructor(

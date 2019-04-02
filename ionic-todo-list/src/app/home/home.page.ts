@@ -9,43 +9,42 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 
-  //On implemente la OnInit
+//On implemente la OnInit
 export class HomePage implements OnInit {
 
 
   //Variable pour stocker le ccontenu de provider dans le controleur pour pouvoir l'afficher
-  private todoList;
+  public todoList;
 
- //Ajout d'une variable router de type Router dans le constructeur 
+  //Ajout d'une variable router de type Router dans le constructeur 
   constructor(
     private todoService: TodoService,
     private storage: Storage,
-    private router:Router) {
+    private router: Router) {
 
   }
   //Methode invoquée à la création de chaque page
   ngOnInit(): void {
-    
   }
- //cette methode est appelée chaque affichage de la page
- 
-  ionViewWillEnter(): void{
+
+  //cette methode est appelée chaque affichage de la page
+  ionViewWillEnter(): void {
     this.storage.get('todo-list').then((data) => {
       // si dtodoList est egal à data ou tableau vide
-    this.todoList = data || [];
+      this.todoList = data || [];
     });
   }
 
-  deleteTask(pos){
+  deleteTask(pos) {
     //sppresion de la tâche
     this.todoList.splice(pos, 1);
     //suvegarde
- this.storage.set('todo-list', this.todoList);
+    this.storage.set('todo-list', this.todoList);
   }
- 
+
   //Modification du formulaire
-  showUpdateForm(pos){
-   //Utilisation de l'objet router crée plus haut
-   this.router.navigateByUrl('/formulaire/' + pos);
+  showUpdateForm(pos) {
+    //Utilisation de l'objet router crée plus haut
+    this.router.navigateByUrl('/formulaire/' + pos);
   }
 }
