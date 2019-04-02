@@ -23,8 +23,13 @@ export class HomePage implements OnInit {
     private router:Router) {
 
   }
-
+  //Methode invoquée à la création de chaque page
   ngOnInit(): void {
+    
+  }
+ //cette methode est appelée chaque affichage de la page
+ 
+  ionViewWillEnter(): void{
     this.storage.get('todo-list').then((data) => {
       // si dtodoList est egal à data ou tableau vide
     this.todoList = data || [];

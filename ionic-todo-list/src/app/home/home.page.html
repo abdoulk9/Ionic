@@ -10,10 +10,10 @@
   <ion-list>
     <!-- //Creation de button de glissement  -->
     <!-- Ajout d'une variable pour recuperer l'index -->
-    <ion-item-sliding *ngFor="let todo of todoList" let pos=index>
+    <ion-item-sliding *ngFor="let todo of todoList; let pos=index">
 
       <ion-item>
-        <!-- //relation bi-directionnel, si la case est coché la valeur est moidifiée dans le model -->
+        <!-- //relation bi-directionnel, si la case est cochée la valeur est moidifiée dans le model -->
         <ion-checkbox [(ngModel)]="todo.done"></ion-checkbox>
         <ion-label>{{todo.taskName}}</ion-label>
       </ion-item>

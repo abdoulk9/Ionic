@@ -13,14 +13,15 @@ import { Storage } from '@ionic/storage';
 export class FormulairePage implements OnInit {
 
 
-   private task;
- //ajout de la variable routeur de type Router pour la navigation
- //injection de la Variable activateRoute pour recuperer la position de l'element modifer
+  private task;
+  private pos;
+  //ajout de la variable routeur de type Router pour la navigation
+  //injection de la Variable activateRoute pour recuperer la position de l'element modifer
   constructor(
-    private todoService:TodoService,
-     private router: Router,
-      private storage: Storage,
-      private activateRoute: ActivatedRoute) { }
+    private todoService: TodoService,
+    private router: Router,
+    private storage: Storage,
+    private activateRoute: ActivatedRoute) { }
 
   //la fonction est appéllée à chaque affichage de la page
   ngOnInit() {
@@ -31,32 +32,40 @@ export class FormulairePage implements OnInit {
       done: false,
       id: null
     }
-     //Récupèration de la position (modification)
-    let pos =this.activateRoute.snapshot.paramMap.get('pos');
-     //si pos n'est pas vide (modification)
-    if(pos){
-           this.storage.get('todo-list').then(
-           (data)=>{
-           this.task = data[pos];
-          }
-           )
-  }
-}
-
-  validateForm(){
-     if(this.task.taskName){
-
-       //Resolution de la promesse
+    //Récupèration de la position (modification)
+    this.pos = this.activateRoute.snapshot.paramMap.get('pos');
+    //si pos n'est pas vide (modification)
+    if (this.pos) {
       this.storage.get('todo-list').then(
-        (data)=>{
-        let todoList = data || [];
-        todoList.push(this.task);
-        this.storage.set('todo-list', todoList);
-        this.router.navigateByUrl("/home");
+        (data) => {
+          this.task = data[this.pos];
+          console.log(data);
         }
       )
-    
-     }
+    }
+  }
+
+  validateForm() {
+    console.log(this.task);
+    if (this.task && this.task.taskName) {
+
+      //Resolution de la promesse
+      this.storage.get('todo-list').then(
+        (data) => {
+          let todoList = data || [];
+          //si la position est definie[ Ajout ou modification seleon le cas]
+          if(this.pos){
+           todoList[this.pos]= this.task;
+          }else{
+
+          todoList.push(this.task);
+          }
+          this.storage.set('todo-list', todoList);
+          this.router.navigateByUrl("/home");
+        }
+      )
+
+    }
   }
 
 }
