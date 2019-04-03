@@ -18,13 +18,17 @@ export class Tab1Page {
     // On donne comme second argument null parcqu'on peut lui passer even
     this.loadData(false, null); 
   }
-
+  private typeGenre: string; 
+  private typeNat: Array<string>=[];
   private loadData(addBeforeContent: boolean, even) {
     let url = "https://randomuser.me/api";
+
+  
     //Filtrage  de resultats par passage de parametre 
     let requestParams = new HttpParams().set('results', '20')
-      .set('gender', 'female')
-      .set('nat', 'fr, ch');
+      .set('gender', this.typeGenre ) //'female'
+      //transformation du tableau en string avec JOIN(',')
+      .set('nat',  this.typeNat.join(','));
     //retour un observable
     let req = this.http.get(url, { params: requestParams });
     //console.log(req);

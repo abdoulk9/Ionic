@@ -3,35 +3,56 @@
     <ion-title>
       Tab One
     </ion-title>
-  </ion-toolbar>
+ 
+
+  <ion-grid>
+   <ion-row>
+     <ion-col>
+       <ion-select placeholder="Choose gender"  [(ngModel)]="typeGenre">
+          <ion-select-option value="female">Female</ion-select-option>
+          <ion-select-option value="male">Male</ion-select-option>
+       </ion-select>
+     </ion-col>
+   <!-- </ion-row>
+      <ion-row> -->
+          <ion-col>
+            <ion-select placeholder="Choose natinality" multiple="true"  [(ngModel)]="typeNat">
+               <ion-select-option value="FR">Française</ion-select-option>
+               <ion-select-option value="SP">Espagne</ion-select-option>
+                <ion-select-option value="CH">Suisse</ion-select-option>
+                <ion-select-option value="US">USA</ion-select-option>
+                <ion-select-option value="CA">Canada</ion-select-option>
+                <ion-select-option value="DE">Germain</ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+  </ion-grid>
+</ion-toolbar>
 </ion-header>
+
 
 <ion-content>
 
-  
+  <ion-list>
+    <!-- //rafraichissement -->
+    <ion-refresher slot="fixed" (ionRefresh)="refreshData($event)">
+      <ion-refresher-content refreshingText="Chargement en cours ..." refreshingSpinner="bubbles">
+      </ion-refresher-content>
+    </ion-refresher>
 
-    <ion-list>
-      <!-- //rafraichissement -->
-      <ion-refresher slot="fixed" (ionRefresh)="refreshData($event)">
-      <ion-refresher-content 
-      refreshingText="Chargement en cours ..."
-      refreshingSpinner="bubbles">
-    </ion-refresher-content>
-  </ion-refresher>
-  
-      <ion-item *ngFor=" let user of userList">
-        <h1>{{ user.name.title}} {{ user.name.first}} {{ user.name.lmast }} </h1>
-         <p>{{user.phone}}</p> 
-        <ion-avatar  slot="start">
-            <ion-img src="{{user.picture.large}}"></ion-img>
-        </ion-avatar>
-      </ion-item>
-    </ion-list>
+    <ion-item *ngFor=" let user of userList">
+      <p>{{ user.name.title}} {{ user.name.first}} {{ user.name.lmast }} [Pays: {{ user.location.state}} ]</p>
+      <p> [Phone number:{{user.phone}}]</p>
+      <ion-avatar slot="start">
+        <ion-img src="{{user.picture.large}}"></ion-img>
+      </ion-avatar>
+    </ion-item>
+  </ion-list>
 
-    <ion-infinite-scroll treshold="50%" (ionInfinite)="loadMoreData($event)">
-     
-  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Veuillez patienter 
+  <ion-infinite-scroll treshold="50%" (ionInfinite)="loadMoreData($event)">
+
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Veuillez patienter 
   pendant la triangulation des pyramides">
-</ion-infinite-scroll-content>
-    </ion-infinite-scroll>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
