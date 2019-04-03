@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-tab1',
@@ -17,11 +17,16 @@ export class Tab1Page {
 
 
     //creation d'une variable pour contenir une etablir une connection
-    let url = "https://randomuser.me/api?results=20";
+    let url = "https://randomuser.me/api";
+     
+     //declarattion de filtrage 
+    let requestParams = new HttpParams().set('results','20')
+                                        .set('gender', 'female')
+                                        .set('nat','fr, ch');
 
     //retour un observable
-    let req = this.http.get(url);
-    let pic;
+    let req = this.http.get(url, {params: requestParams});
+    
     //console.log(req);
     req.subscribe(
       (data: any) => {
