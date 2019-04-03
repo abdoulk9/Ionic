@@ -13,27 +13,35 @@ export class Tab1Page {
   pic: any;
 
   //injection du http
-  constructor(private http: HttpClient) {
-
-
-    //creation d'une variable pour contenir une etablir une connection
-    let url = "https://randomuser.me/api";
-     
-     //declarattion de filtrage 
-    let requestParams = new HttpParams().set('results','20')
-                                        .set('gender', 'female')
-                                        .set('nat','fr, ch');
-
-    //retour un observable
-    let req = this.http.get(url, {params: requestParams});
-    
-    //console.log(req);
-    req.subscribe(
-      (data: any) => {
-        console.log(data);
-        this.userList = data.results;
-        this.pic = data.results.picture;
-      }
-    )
+  constructor(private http: HttpClient){
+    // creation d'une variable pour contenir une etablir une connection
+    // On donne comme second argument null parcqu'on peut lui passer even
+    this.loadData(false, null); 
   }
+
+  private loadData(addBeforeContent: boolean, even) {
+    let url = "https://randomuser.me/api";
+    //Filtrage  de resultats par passage de parametre 
+    let requestParams = new HttpParams().set('results', '20')
+      .set('gender', 'female')
+      .set('nat', 'fr, ch');
+    //retour un observable
+    let req = this.http.get(url, { params: requestParams });
+    //console.log(req);
+    req.subscribe((data: any) => {
+      console.log(data);
+      if(addBeforeContent){
+        this.userList = data.results.concat(this.userList);
+      }else{
+        this.userList = this.userList.concat(data.results);
+      }
+      if(even){
+        even.target.complete();
+      }
+    });
+  }
+    public loadMoreData(even){
+    this.loadData(false, even)
+  }
+
 }

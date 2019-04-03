@@ -19,4 +19,11 @@
         </ion-avatar>
       </ion-item>
     </ion-list>
+
+    <ion-infinite-scroll treshold="50%" (ionInfinite)="loadMoreData($event)">
+     
+  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Veuillez patienter 
+  pendant la triangulation des pyramides">
+</ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>
