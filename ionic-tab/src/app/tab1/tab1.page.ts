@@ -10,6 +10,7 @@ export class Tab1Page {
 
   //recuperation de la liste
   public userList: Array<any> = []
+  pic: any;
 
   //injection du http
   constructor(private http: HttpClient) {
@@ -20,11 +21,13 @@ export class Tab1Page {
 
     //retour un observable
     let req = this.http.get(url);
+    let pic;
     //console.log(req);
     req.subscribe(
       (data: any) => {
         console.log(data);
         this.userList = data.results;
+        this.pic = data.results.picture;
       }
     )
   }

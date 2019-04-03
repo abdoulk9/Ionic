@@ -7,9 +7,16 @@
 </ion-header>
 
 <ion-content>
+
+  
+
     <ion-list>
       <ion-item *ngFor=" let user of userList">
-        <p>{{ user.name.title}} {{ user.name.first}} {{ user.name.lmast }}</p>
+        <h1>{{ user.name.title}} {{ user.name.first}} {{ user.name.lmast }} </h1>
+         <p>{{user.phone}}</p> 
+        <ion-avatar  slot="start">
+            <ion-img src="{{user.picture.large}}"></ion-img>
+        </ion-avatar>
       </ion-item>
     </ion-list>
 </ion-content>
