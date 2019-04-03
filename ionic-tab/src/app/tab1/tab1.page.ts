@@ -43,5 +43,8 @@ export class Tab1Page {
     public loadMoreData(even){
     this.loadData(false, even)
   }
-
+  //Fionction pour recharge les données
+   public refreshData(even){
+     this.loadData(true, even);
+ }
 }

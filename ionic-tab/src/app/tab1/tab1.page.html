@@ -11,6 +11,14 @@
   
 
     <ion-list>
+      <!-- //rafraichissement -->
+      <ion-refresher slot="fixed" (ionRefresh)="refreshData($event)">
+      <ion-refresher-content 
+      refreshingText="Chargement en cours ..."
+      refreshingSpinner="bubbles">
+    </ion-refresher-content>
+  </ion-refresher>
+  
       <ion-item *ngFor=" let user of userList">
         <h1>{{ user.name.title}} {{ user.name.first}} {{ user.name.lmast }} </h1>
          <p>{{user.phone}}</p> 
