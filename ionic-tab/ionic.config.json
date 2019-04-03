@@ -1,5 +1,7 @@
 {
   "name": "ionic-tab",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
