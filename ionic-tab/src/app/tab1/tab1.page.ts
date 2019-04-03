@@ -8,19 +8,24 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Tab1Page {
 
+  //recuperation de la liste
+  public userList: Array<any> = []
 
   //injection du http
-  constructor(private http: HttpClient){
-    //creation d'une variable pour contenir une etablir une connection
-  let url= "https://randomuser.me/api?results=20";
+  constructor(private http: HttpClient) {
 
-  //retour un observable
-  let  req = this.http.get(url);
-  //console.log(req);
-  req.subscribe(
-    (data)=> {
-      console.log(data);
-    }
-  )
+
+    //creation d'une variable pour contenir une etablir une connection
+    let url = "https://randomuser.me/api?results=20";
+
+    //retour un observable
+    let req = this.http.get(url);
+    //console.log(req);
+    req.subscribe(
+      (data: any) => {
+        console.log(data);
+        this.userList = data.results;
+      }
+    )
   }
 }
